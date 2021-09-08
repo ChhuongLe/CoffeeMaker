@@ -50,6 +50,8 @@ def processPayment(drink):
 
   total = 0.01*numPennies + 0.05*numNickels + 0.10*numDimes + 0.25*numQuarters
 
+  # check the monetary value that was input by the user
+  # only return true if the value is >= cost
   if drink['cost'] < total:
     print ('You input: $' + str(total))
     total = total - drink['cost']
@@ -58,6 +60,7 @@ def processPayment(drink):
   elif drink['cost'] == total:
     print('You input: $' + str(total))
     return True
+
   # Base case, returns false if process fails
   print('Need more money, head to the nearest coin machine')
   return False
