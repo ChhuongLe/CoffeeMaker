@@ -38,6 +38,39 @@ resources = {
     # If enough money and resources are available, then make the coffee
     # Otherwise output an error message
 
+# TODO: implement a method that asks the user to insert their payment value in coins
+# Should return a boolean to show that the process is valid or not
+def processPayment(drink):
+  total = 0
+
+  numPennies = float(input('How many pennies?: '))
+  numNickels = float(input('How many nickels?: '))
+  numDimes = float(input('How many dimes?: '))
+  numQuarters = float(input('How many quarters?: '))
+
+  total = 0.01*numPennies + 0.05*numNickels + 0.10*numDimes + 0.25*numQuarters
+
+  if drink['cost'] < total:
+    print ('You input: $' + str(total))
+    total = total - drink['cost']
+    print('Your change is: $'+ str(total))
+    return True
+  elif drink['cost'] == total:
+    print('You input: $' + str(total))
+    return True
+  # Base case, returns false if process fails
+  print('Need more money, head to the nearest coin machine')
+  return False
+
+# TODO: implement a method that checks the resources available
+def checkResources(orderIngredients):
+  # Base case, return false if there is not enough ingredients
+  return False
+
+# TODO: implement a method that will make the coffee
+def makeCoffee():
+  return 'Still implementing'
+
 # Initialize a boolean flag that will keep the program running
 isOn = True
 
@@ -51,9 +84,17 @@ while(isOn):
   if (selection == 'off'):
     isOn = False
     print('Coffee machine turning off')
+  # If the user wants a report of the remaining resources
   elif (selection == 'report'):
+    # Print the current resources
     print(resources)
+  # If the user selects a drink, check if the drink is present
   elif selection in MENU.keys():
-    print(selection)
+    # if it is, ask the user to input the amount in coins they are going to pay
+    if processPayment(MENU[selection]):
+      # if the processPayment method returns true, check if there are enough resources present
+      if checkResources(selection['ingredients']):
+        # if checkResources returns true, then make the coffee
+        makeCoffee()
   else:
     print('Drink not found')
