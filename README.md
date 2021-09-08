@@ -1,5 +1,5 @@
 # Coffeemaker Project
-## Description
+## 1. Description
 - Develop a program for a coffee machine to make 3 types of hot drinks 
   - Espresso
   - Latte
