@@ -1,7 +1,5 @@
-# PythonMiniProjects
-Projects done in python for practice 
-
-## Description
+# Coffeemaker Project
+## 1. Description
 - Develop a program for a coffee machine to make 3 types of hot drinks 
   - Espresso
   - Latte
