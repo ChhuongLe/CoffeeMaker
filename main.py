@@ -38,7 +38,7 @@ resources = {
     # If enough money and resources are available, then make the coffee
     # Otherwise output an error message
 
-# TODO: implement a method that asks the user to insert their payment value in coins
+# (Completed) TODO: implement a method that asks the user to insert their payment value in coins
 # Should return a boolean to show that the process is valid or not
 def processPayment(drink):
   total = 0
