@@ -84,8 +84,8 @@ def checkResources(orderIngredients):
   # Return true if there are enough ingredients and edit resource variables
   return True
 
-# TODO: implement a method that will make the coffee
-# TODO: update resource amounts
+# (completed) TODO: implement a method that will make the coffee
+# (completed) TODO: update resource amounts
 def makeCoffee(drink, drinkIngredients):
   # iterate through the resources and subtract the drink requirements
   for ingredient in drinkIngredients:
