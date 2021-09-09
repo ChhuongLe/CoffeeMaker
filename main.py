@@ -40,6 +40,9 @@ resources = {
     "coffee": 100,
 }
 
+# initialize variable to store profits
+profit = 0
+
 # (Completed) TODO: implement a method that asks the user to insert their payment value in coins
 # Should return a boolean to show that the process is valid or not
 def processPayment(drink):
@@ -58,6 +61,9 @@ def processPayment(drink):
     print ('You input: $' + str(total))
     total = total - drink['cost']
     print('Your change is: $'+ str(total))
+
+    global profit
+    profit += drink['cost']
     return True
   elif drink['cost'] == total:
     print('You input: $' + str(total))
@@ -67,21 +73,24 @@ def processPayment(drink):
   print('Need more money, head to the nearest coin machine')
   return False
 
-# TODO: implement a method that checks the resources available
+# (completed) TODO: implement a method that checks the resources available
 def checkResources(orderIngredients):
   # check if there are enough resources to make the coffee
   for ingredient in orderIngredients:
     # If any ingredient is too much, return false
     if (orderIngredients[ingredient] > resources[ingredient]):
-      print('Sorry, there is not enough {ingredient}.')
+      print(f'Sorry, there is not enough {ingredient}.')
       return False
   # Return true if there are enough ingredients and edit resource variables
   return True
 
 # TODO: implement a method that will make the coffee
 # TODO: update resource amounts
-def makeCoffee():
-  print('still implementing')
+def makeCoffee(drink, drinkIngredients):
+  # iterate through the resources and subtract the drink requirements
+  for ingredient in drinkIngredients:
+    resources[ingredient] -= drinkIngredients[ingredient]
+  print (f'Here is your {drink}.')
   return True
 
 # Initialize a boolean flag that will keep the program running
@@ -100,7 +109,10 @@ while(isOn):
   # If the user wants a report of the remaining resources
   elif (selection == 'report'):
     # Print the current resources
-    print(resources)
+    print(f"Water: {resources['water']} ml")
+    print(f"Milk: {resources['milk']} ml")
+    print(f"Coffee: {resources['coffee']} g")
+    print(f"Profit: ${profit}")
   # If the user selects a drink, check if the drink is present in the dictionary
   elif selection in MENU.keys():
     drink = MENU[selection]
@@ -109,6 +121,6 @@ while(isOn):
     # if there are enough resources, ask the user to input the amount of coins they possess
       if processPayment(drink):
        # if the processPayment method returns true, make the coffee
-        makeCoffee(drink, drink['ingredients'])
+        makeCoffee(selection, drink['ingredients'])
   else:
     print('Drink not found')
